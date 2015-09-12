@@ -31,7 +31,7 @@ class DeterministicAgent(Agent):
         if step > 0:
             for action in self.get_available_actions():
                 child = copy.deepcopy(self)
-                child.move(action)
+                child.place_cell.virtual_move(action)
                 novelty += child.traverse_maze(step - 1)
         return novelty
 
