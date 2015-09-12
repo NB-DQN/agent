@@ -8,9 +8,11 @@ class DeterministicAgent(Agent):
         EPSILON = 0.1
 
         if random.random() < EPSILON:
-            return random.choice(self.get_available_actions())
+            action = random.choice(self.get_available_actions())
         else:
-            return self.choose_action_greedy()
+            action = self.choose_action_greedy()
+        self.place_cell.move(action)
+        return action
 
     def choose_action_greedy(self):
         best_actions = []
