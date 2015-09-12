@@ -43,5 +43,3 @@ class DeterministicAgent(Agent):
                 available_actions.append(action)
         return available_actions
 
-    def move(self, action):
-        self.place_cell.move(action)
