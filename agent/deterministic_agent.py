@@ -1,9 +1,9 @@
-from .. import agent
+from agent import Agent
 
 import random
 import copy
 
-class DeterministicAgent(agent.Agent):
+class DeterministicAgent(Agent):
     def choose_action(self):
         if random.random() < EPSILON:
             return random.choice(self.get_available_actions())
