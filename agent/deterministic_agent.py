@@ -5,6 +5,8 @@ import copy
 
 class DeterministicAgent(Agent):
     def choose_action(self):
+        EPSILON = 0.1
+
         if random.random() < EPSILON:
             return random.choice(self.get_available_actions())
         else:
