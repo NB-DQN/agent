@@ -43,3 +43,5 @@ class DeterministicAgent(Agent):
                 available_actions.append(action)
         return available_actions
 
+    def set_wall(self, wall):
+        self.wall_information[self.place_cell.coordinate_id()] = wall
