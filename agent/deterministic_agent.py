@@ -35,7 +35,7 @@ class DeterministicAgent(Agent):
         wall = self.wall_information.setdefault(self.place_cell.coordinate_id(), (False, False, False, False))
         available_actions = []
         for action in range(0, 4):
-            if (not wall[action]) and self.place_cell.valid_action(action):
+            if (not wall[action]) and self.place_cell.validate_action(action):
                 available_actions.append(action)
         return available_actions
 
