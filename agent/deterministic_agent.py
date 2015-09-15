@@ -11,14 +11,15 @@ class DeterministicAgent(Agent):
             action = random.choice(self.get_available_actions())
         else:
             action = self.choose_action_greedy()
-        self.place_cell.move(action)
+        self.place_cell.move(action, 0)
         return action
 
     def choose_action_greedy(self):
         best_actions = []
         max_novelty = 0
         for action in self.get_available_actions():
-            predicted_novelty = self.traverse_maze(10)
+            child = copy.deepcopy(self)
+            predicted_novelty = child.traverse_maze(5)
             if predicted_novelty > max_novelty:
                 best_actions = [action]
                 max_novelty = predicted_novelty
@@ -27,12 +28,13 @@ class DeterministicAgent(Agent):
         return random.choice(best_actions)
 
     def traverse_maze(self, step):
-        novelty = self.place_cell.novelty()
+        novelty = self.place_cell.novelty
         if step > 0:
+            current_coordinate = self.place_cell.coordinate_id()
             for action in self.get_available_actions():
-                child = copy.deepcopy(self)
-                child.place_cell.virtual_move(action)
-                novelty += child.traverse_maze(step - 1)
+                self.place_cell.set_coordinate_id(current_coordinate)
+                if self.place_cell.move(action, step - 1):
+                    novelty += self.traverse_maze(step - 1)
         return novelty
 
     def get_available_actions(self):
