@@ -17,9 +17,12 @@ class DeterministicAgent(Agent):
     def choose_action_greedy(self):
         best_actions = []
         max_novelty = 0
+
+        max_traverse_step = 5
         for action in self.get_available_actions():
             child = copy.deepcopy(self)
-            predicted_novelty = child.traverse_maze(5)
+            child.place_cell.move(action, max_traverse_step)
+            predicted_novelty = child.traverse_maze(max_traverse_step - 1)
             if predicted_novelty > max_novelty:
                 best_actions = [action]
                 max_novelty = predicted_novelty
