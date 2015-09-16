@@ -5,7 +5,7 @@ import copy
 
 class DeterministicAgent(Agent):
     def choose_action(self):
-        EPSILON = 0.1
+        EPSILON = 0.2
 
         if random.random() < EPSILON:
             action = random.choice(self.get_available_actions())
@@ -18,7 +18,7 @@ class DeterministicAgent(Agent):
         best_actions = []
         max_novelty = 0
 
-        max_traverse_step = 5
+        max_traverse_step = 3
         for action in self.get_available_actions():
             child = copy.deepcopy(self)
             child.place_cell.move(action, max_traverse_step)
