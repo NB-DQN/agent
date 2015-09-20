@@ -4,6 +4,10 @@ import random
 import copy
 
 class DeterministicAgent(Agent):
+    def __init__(self, place_cell):
+        self.place_cell = place_cell
+        self.wall_information = {}
+
     def choose_action(self):
         EPSILON = 0.05
 
