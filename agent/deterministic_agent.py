@@ -15,7 +15,6 @@ class DeterministicAgent(Agent):
             action = random.choice(self.get_available_actions())
         else:
             action = self.choose_action_greedy()
-        self.place_cell.move(action, 0)
         return action
 
     def choose_action_greedy(self):
