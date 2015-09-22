@@ -24,7 +24,7 @@ class DeterministicAgent(Agent):
         max_traverse_step = 3
         for action in self.get_available_actions():
             child = copy.deepcopy(self)
-            child.place_cell.move(action, max_traverse_step)
+            child.place_cell.move(action)
             predicted_novelty = child.traverse_maze(max_traverse_step - 1)
             if predicted_novelty > max_novelty:
                 best_actions = [action]
@@ -39,8 +39,8 @@ class DeterministicAgent(Agent):
             current_coordinate = self.place_cell.coordinate_id()
             for action in self.get_available_actions():
                 self.place_cell.set_coordinate_id(current_coordinate)
-                if self.place_cell.move(action, step - 1):
-                    novelty += self.traverse_maze(step - 1)
+                self.place_cell.move(action)
+                novelty += self.traverse_maze(step - 1)
         return novelty
 
     def get_available_actions(self):
