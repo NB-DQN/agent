@@ -9,7 +9,7 @@ class NoveltyAgent(Agent):
         self.wall_information = {}
 
     def choose_action(self):
-        EPSILON = 0.05
+        EPSILON = 0.1
 
         if random.random() < EPSILON:
             action = random.choice(self.get_available_actions())
