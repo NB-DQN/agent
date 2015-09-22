@@ -3,7 +3,7 @@ from agent import Agent
 import random
 import copy
 
-class DeterministicAgent(Agent):
+class NoveltyAgent(Agent):
     def __init__(self, place_cell):
         self.place_cell = place_cell
         self.wall_information = {}
